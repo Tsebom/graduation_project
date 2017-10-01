@@ -34,8 +34,8 @@ class MethodVK:
         )
 
         time_process = time.clock() - times
-        if time_process > 0.333333333333334:
-            time.sleep(time_process - 0.333333333333334)
+        if time_process < 0.333333333333334:
+            time.sleep(0.333333333333334 - time_process)
 
         return response.json()
 

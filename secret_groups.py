@@ -33,8 +33,8 @@ class MethodVK:
         )
 
         time_process = time.clock() - times
-        if time_process > 0.333333333333334:
-            time.sleep(time_process - 0.333333333333334)
+        if time_process < 0.333333333333334:
+            time.sleep(0.333333333333334 - time_process)
 
         return response.json()
 
@@ -107,9 +107,9 @@ def process_procent(whole, bit):
     rezult = (bit * 100) / whole
 
     if rezult != 100:
-        return print('\rProcess: {}%'.format(int(rezult)), end='')
+        return print('\rProcessing: {}%'.format(int(rezult)), end='')
     elif rezult == 100:
-        return print('\rProcess: Complited')
+        return print('\rProcessing: Complited')
 
 
 def groups_friends(list_id):
