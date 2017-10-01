@@ -120,7 +120,6 @@ def groups_friends(list_id):
     """
     set_rezult = set()
     bit = 1
-    print('Process: ', end="")
 
     for id_friend in list_id:
         try:
