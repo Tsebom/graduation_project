@@ -4,7 +4,8 @@ import requests
 import time
 
 VERSION = 5.68
-TOKEN = str('TOKEN')
+TOKEN = str('211595821b163708efdd6f61a71452141760576537cf4783a34ebd8a966dcd466b'
+            '4b175f89551911326ad')
 
 
 class MethodVK:
@@ -37,6 +38,26 @@ class MethodVK:
             time.sleep(0.333333333333334 - time_process)
 
         return response.json()
+
+
+class Users:
+    """
+    Реализация метода Users
+    """
+    def __init__(self, user_ids):
+        self.user_ids = user_ids
+
+    def users_get(self):
+        """
+        Возвращает словарь с параметрами матода Users
+        """
+        params = {
+            'user_ids': self.user_ids,
+            'access_token': TOKEN,
+            'version': VERSION
+        }
+
+        return params
 
 
 class Friends:
@@ -211,9 +232,13 @@ def record_file(file_name, list_record):
 
 
 if __name__ == '__main__':
-    id = input('Введите id пользователя: ')
+    user = input('Введите id или nickname пользователя: ')
     quantity = input(
         'Введите максимальное количество друзей входящи в группу: ')
+
+    # Получаем id пользователя
+    id = MethodVK('users.get',
+                  Users(user).users_get()).method_api()['response'][0]['uid']
 
     # Получаем список id друзей пользователя
     list_id = MethodVK('friends.get',
