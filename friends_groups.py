@@ -4,8 +4,7 @@ import requests
 import time
 
 VERSION = 5.68
-TOKEN = str('211595821b163708efdd6f61a71452141760576537cf4783a34ebd8a966dcd466b'
-            '4b175f89551911326ad')
+TOKEN = str('TOKEN')
 
 
 class MethodVK:
@@ -28,10 +27,10 @@ class MethodVK:
 
         times = time.clock()
 
-        response = requests.get(
+        request_vk = requests.Session()
+        response = request_vk.get(
             '/'.join(['https://api.vk.com/method', self.method]),
-            self.params
-        )
+            params=self.params)
 
         time_process = time.clock() - times
         if time_process < 0.333333333333334:
