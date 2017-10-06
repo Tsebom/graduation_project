@@ -26,11 +26,22 @@ class MethodVK:
         """
 
         times = time.clock()
+        drop = 0
 
         request_vk = requests.Session()
-        response = request_vk.get(
-            '/'.join(['https://api.vk.com/method', self.method]),
-            params=self.params)
+        response = None
+
+        while drop != 1:
+            try:
+                response = request_vk.get(
+                    '/'.join(['https://api.vk.com/method', self.method]),
+                    params=self.params, timeout=1)
+
+                drop = 1
+
+            except requests.exceptions.ReadTimeout:
+                print('\rReadTimeout')
+                drop = 0
 
         time_process = time.clock() - times
         if time_process < 0.333333333333334:
