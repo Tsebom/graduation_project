@@ -4,7 +4,8 @@ import requests
 import time
 
 VERSION = 5.68
-TOKEN = str('TOKEN')
+TOKEN = str('5dfd6b0dee902310df772082421968f4c06443abecbc082a8440cb18910a56dac'
+            'a73ac8d04b25154a1128')
 
 
 class MethodVK:
